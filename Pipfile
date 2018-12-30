@@ -1,0 +1,20 @@
+[[source]]
+name = "pypi"
+verify_ssl = true
+url = "https://pypi.python.org/simple"
+
+[dev-packages]
+"flake8" = "*"
+pylint = "*"
+rope = "*"
+yapf = "*"
+ipython = "*"
+python-simplexml = "*"
+requests = "*"
+
+[packages]
+simplejson = "*"
+e1839a8 = {path = ".",editable = true}
+
+[requires]
+python_version = "3.5"

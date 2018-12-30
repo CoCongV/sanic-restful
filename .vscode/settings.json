@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "/home/lvcong/.local/share/virtualenvs/sanic-restful-0r8gFxAw/bin/python",
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "yapf",
+    "python.linting.pylintPath": "/home/lvcong/.local/share/virtualenvs/sanic-restful-0r8gFxAw/bin/pylint",
+    "editor.rulers": [
+        80
+    ],
+    "python.linting.pylamaPath": "pylama",
+    "python.linting.flake8Path": "/home/lvcong/.local/share/virtualenvs/sanic-restful-0r8gFxAw/bin/flake8"
+}
