@@ -3,19 +3,16 @@ from copy import deepcopy
 import decimal
 
 from multidict import MultiDict
-from sanic.exceptions import abort
+from sanic.exceptions import abort, InvalidUsage
 from sanic.request import Request
 
 
 class Namespace(collections.UserDict):
-    def __getattr__(self, name):
-        try:
-            return self[name]
-        except KeyError:
-            raise AttributeError(name)
+    def __missing__(self, name):
+        raise AttributeError(name)
 
-    def __setattr__(self, name, value):
-        self[name] = value
+    def __getattr__(self, name):
+        return self.__getitem__(name)
 
 
 _friendly_location = {
@@ -79,7 +76,8 @@ class Argument(object):
                  case_sensitive=True,
                  store_missing=True,
                  trim=False,
-                 nullable=True):
+                 nullable=True,
+                 ignore_invalid_usage=True):
         self.name = name
         self.default = default
         self.dest = dest
@@ -95,6 +93,7 @@ class Argument(object):
         self.store_missing = store_missing
         self.trim = trim
         self.nullable = nullable
+        self.ignore_400 = ignore_invalid_usage
 
     def source(self, request):
         """Pulls values off the request in the provided location
@@ -107,7 +106,14 @@ class Argument(object):
         :param request: The flask request object to parse arguments from
         """
         if isinstance(self.location, str):
-            value = getattr(request, self.location, MultiDict())
+            try:
+                value = getattr(request, self.location, MultiDict())
+            except InvalidUsage as e:
+                if self.ignore_400:
+                    return MultiDict()
+                else:
+                    raise e
+
             if callable(value):
                 value = value()
             if value:
@@ -125,7 +131,7 @@ class Argument(object):
         return MultiDict()
 
     def convert(self, value, op):
-        if self.location == "file" or not self.type:
+        if self.location == "file":
             return value
         if not value:
             if self.nullable:
@@ -134,6 +140,8 @@ class Argument(object):
                 raise ValueError("Must not be null")
 
         try:
+            if not self.type:
+                return value
             return self.type(value, self.name, op)
         except TypeError:
             try:
@@ -319,8 +327,8 @@ class RequestParser:
 
         # A record of arguments not yet parsed; as each is found
         # among self.args, it will be popped out
-        req_temp = collections.namedtuple('RedType', 'unparsed_args')
-        req_temp.unparsed_args = dict(
+        req_temp = collections.namedtuple('RedType', 'unparsed_arguments')
+        req_temp.unparsed_arguments = dict(
             self.argument_cls('').source(request)) if strict else {}
         errors = {}
 
@@ -335,10 +343,10 @@ class RequestParser:
         if errors:
             abort(400, message=errors)
 
-        if strict and req_temp.unparsed_args:
+        if strict and req_temp.unparsed_arguments:
             abort(
                 400, 'Unknown arguments: %s' % ', '.join(
-                    req_temp.unparsed_args.keys()))
+                    req_temp.unparsed_arguments.keys()))
 
         return namespace
 
