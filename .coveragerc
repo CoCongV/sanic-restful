@@ -1,5 +1,7 @@
 [run]
 branch = true
-omit =
-    */venv/*
-    */tests/*
+include = sanic_restful/*
+omit = tests/*
+
+[html]
+directory = htmlcov/

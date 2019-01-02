@@ -45,10 +45,7 @@ setup(
     platforms='any',
     test_suite='nose.collector',
     install_requires=requirements,
-    tests_require=['Sanic-RESTful[paging]', 'mock>=0.8', 'blinker'],
+    setup_requires=['pytest-runner', ],
+    tests_require=['sanic-restful', 'pytest', 'pytest_cov', 'nose'],
     # Install these with "pip install -e '.[paging]'" or '.[docs]'
-    extras_require={
-        'paging': 'pycrypto>=2.6',
-        'docs': 'sphinx',
-    }
 )
