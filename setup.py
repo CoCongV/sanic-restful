@@ -49,7 +49,7 @@ setup(
         'pytest-runner',
     ],
     tests_require=[
-        'sanic-restful', 'pytest', 'pytest_cov', 'nose', 'coverage==4.3.4'
+        'sanic-restful', 'pytest', 'pytest_cov', 'nose',
     ],
     # Install these with "pip install -e '.[paging]'" or '.[docs]'
 )

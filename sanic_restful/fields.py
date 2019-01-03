@@ -1,11 +1,10 @@
 from calendar import timegm
 from decimal import Decimal as MyDecimal, ROUND_HALF_EVEN
 from email.utils import formatdate
-from urllib.parse import urlparse, urlunparse
 
 from sanic_restful.marshal import marshal
 
-__all__ = ["String", "FormattedString", "Url", "DateTime", "Float",
+__all__ = ["String", "FormattedString", "DateTime", "Float",
            "Integer", "Arbitrary", "Nested", "List", "Raw", "Boolean",
            "Fixed", "Price"]
 
@@ -219,7 +218,7 @@ class Integer(Raw):
         specified.
     """
     def __init__(self, default=0, **kwargs):
-        super(Integer, self).__init__(default=default, **kwargs)
+        super().__init__(default=default, **kwargs)
 
     def format(self, value):
         try:

@@ -32,9 +32,9 @@ class Resource(HTTPMethodView):
         method = request.method.lower()
         handler = getattr(self, method, None)
 
-        if not handler and request.method == "head":
-            handler = getattr(self, "get", None)
-        assert handler is not None, 'Unimplemented method %r' % request.method
+        # if not handler and request.method == "head":
+        #     handler = getattr(self, "get", None)
+        # assert handler is not None, 'Unimplemented method %r' % request.method
 
         if self.method_decorators:
             for decorator in self.method_decorators.get(method, []):

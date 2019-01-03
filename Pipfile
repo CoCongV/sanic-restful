@@ -15,8 +15,7 @@ aiohttp = "*"
 pytest = "*"
 pytest-cov = "*"
 nose = "*"
-codeclimate-test-reporter = "*"
-coverage = "~=4.3.4"
+coverage = "*"
 
 [packages]
 sanic = ">=0.8.3"

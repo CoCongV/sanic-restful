@@ -1,5 +1,6 @@
 import pytest
 from sanic import Sanic
+from sanic.response import json
 from sanic_restful import Api, Resource
 
 
@@ -24,6 +25,11 @@ def app():
         async def patch(self, request):
             return {'response': 'patch'}
 
+    class TestResponse(Resource):
+        async def get(self, request):
+            return json({'response': 'get'})
+
+    api.add_resource(TestResponse, '/response')
     api.add_resource(TestResource, '/')
     yield sanic_app
 
@@ -50,3 +56,10 @@ class TestAPI:
         request, response = app.test_client.patch('/')
         assert response.status == 200
         assert response.json['response'] == 'patch'
+
+        request, response = app.test_client.head('/')
+        assert response.status == 405
+
+        request, response = app.test_client.get('/response')
+        assert response.status == 200
+        assert response.json['response'] == 'get'
