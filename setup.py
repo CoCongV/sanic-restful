@@ -31,7 +31,7 @@ setup(
     license='BSD',
     url='https://github.com/moonlitlaputa/sanic-restful',
     author='Twilio API Team',
-    author_email='help@twilio.com',
+    author_email='cong.lv.yx@gmail.com',
     description='Simple framework for creating REST APIs',
     packages=find_packages(exclude=['tests']),
     classifiers=[
