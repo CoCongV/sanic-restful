@@ -2,9 +2,8 @@ import collections
 from copy import deepcopy
 import decimal
 
-from multidict import MultiDict
 from sanic.exceptions import abort, InvalidUsage
-from sanic.request import Request
+from sanic.request import Request, RequestParameters
 
 
 class Namespace(collections.UserDict):
@@ -93,7 +92,7 @@ class Argument(object):
         self.store_missing = store_missing
         self.trim = trim
         self.nullable = nullable
-        self.ignore_400 = ignore_invalid_usage
+        self.ignore_invalid_usage = ignore_invalid_usage
 
     def source(self, request):
         """Pulls values off the request in the provided location
@@ -101,16 +100,16 @@ class Argument(object):
             json -> dict
             form, args, file -> RequestParameters
         if location is sequence:
-            return multidict
+            return RequestParameters
 
         :param request: The flask request object to parse arguments from
         """
         if isinstance(self.location, str):
             try:
-                value = getattr(request, self.location, MultiDict())
+                value = getattr(request, self.location, RequestParameters())
             except InvalidUsage as e:
-                if self.ignore_400:
-                    return MultiDict()
+                if self.ignore_invalid_usage:
+                    return RequestParameters()
                 else:
                     raise e
 
@@ -119,7 +118,7 @@ class Argument(object):
             if value:
                 return value
         else:
-            values = MultiDict()
+            values = RequestParameters()
             for l in self.location:
                 value = getattr(request, l, None)
                 if callable(value):
@@ -128,7 +127,7 @@ class Argument(object):
                     values.update(value)
             return values
 
-        return MultiDict()
+        return RequestParameters()
 
     def convert(self, value, op):
         if self.location == "file":
