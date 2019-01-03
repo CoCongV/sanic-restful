@@ -4,7 +4,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/bb199b737ab079fd7b0c/test_coverage)](https://codeclimate.com/github/CoCongV/sanic-restful/test_coverage)
 # Sanic-RESTful
 
-(Testing)
+(Developing)
 Sanic-RESTful provides the building blocks for creating a great REST API.
 
 ## User Guide
