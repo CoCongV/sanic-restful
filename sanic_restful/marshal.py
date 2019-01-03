@@ -80,11 +80,11 @@ class marshal_with(object):
 
     def __call__(self, f):
         @wraps(f)
-        def wrapper(*args, **kwargs):
+        async def wrapper(*args, **kwargs):
             _cls = args[0] if args else None
             if isinstance(_cls, Resource):
                 pass
-            resp = f(*args, **kwargs)
+            resp = await f(*args, **kwargs)
             if isinstance(resp, tuple):
                 data, code, headers = unpack(resp)
                 return marshal(data, self.fields, self.envelope), code, headers
@@ -121,8 +121,8 @@ class marshal_with_field:
 
     def __call__(self, f):
         @wraps(f)
-        def wrapper(*args, **kwargs):
-            resp = f(*args, **kwargs)
+        async def wrapper(*args, **kwargs):
+            resp = await f(*args, **kwargs)
             if isinstance(resp, tuple):
                 data, code, headers = unpack(resp)
                 return self.field.format(data), code, headers
