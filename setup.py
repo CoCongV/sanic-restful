@@ -7,7 +7,6 @@ requirements = [
     'aniso8601>=0.82',
     'Sanic',
     'pytz',
-    'werkzeug',
 ]
 
 
@@ -29,10 +28,11 @@ setup(
     name='sanic-restful',
     version=version,
     license='BSD',
-    url='https://github.com/moonlitlaputa/sanic-restful',
-    author='Twilio API Team',
-    author_email='help@twilio.com',
-    description='Simple framework for creating REST APIs',
+    url='https://github.com/CoCongV/sanic-restful',
+    author='CoCong',
+    author_email='cong.lv.yx@gmail.com',
+    description='''Simple framework for creating REST APIs,'''
+    '''Likely Flask-Restful''',
     packages=find_packages(exclude=['tests']),
     classifiers=[
         'Environment :: Web Environment',
@@ -45,10 +45,11 @@ setup(
     platforms='any',
     test_suite='nose.collector',
     install_requires=requirements,
-    tests_require=['Sanic-RESTful[paging]', 'mock>=0.8', 'blinker'],
+    setup_requires=[
+        'pytest-runner',
+    ],
+    tests_require=[
+        'sanic-restful', 'pytest', 'pytest_cov', 'nose', 'coverage==4.3.4'
+    ],
     # Install these with "pip install -e '.[paging]'" or '.[docs]'
-    extras_require={
-        'paging': 'pycrypto>=2.6',
-        'docs': 'sphinx',
-    }
 )

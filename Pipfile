@@ -1,7 +1,7 @@
 [[source]]
-name = "pypi"
+name = "tsinghua"
 verify_ssl = true
-url = "https://pypi.python.org/simple"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 
 [dev-packages]
 "flake8" = "*"
@@ -11,10 +11,17 @@ yapf = "*"
 ipython = "*"
 python-simplexml = "*"
 requests = "*"
+aiohttp = "*"
+pytest = "*"
+pytest-cov = "*"
+nose = "*"
+codeclimate-test-reporter = "*"
+coverage = "~=4.3.4"
 
 [packages]
-simplejson = "*"
-e1839a8 = {path = ".",editable = true}
+sanic = ">=0.8.3"
+pytz = "*"
+aniso8601 = ">=0.82"
 
 [requires]
 python_version = "3.5"
