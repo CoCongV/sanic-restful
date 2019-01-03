@@ -1,7 +1,16 @@
 sudo: false  # https://docs.travis-ci.com/user/ci-environment/
+env:
+  global:
+    - CC_TEST_REPORTER_ID=9012cdb4c9f806992774593e26bd2497945c1b8a1c45ad81fe529100071a4a45
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 language: python
 python:
   - 3.6
   - 3.5
 install: pip install aiohttp
 script: python setup.py test
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
