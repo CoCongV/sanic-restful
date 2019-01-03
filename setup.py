@@ -32,7 +32,7 @@ setup(
     author='CoCong',
     author_email='cong.lv.yx@gmail.com',
     description='''Simple framework for creating REST APIs,'''
-                '''Likely Flask-Restful''',
+    '''Likely Flask-Restful''',
     packages=find_packages(exclude=['tests']),
     classifiers=[
         'Environment :: Web Environment',
@@ -48,6 +48,8 @@ setup(
     setup_requires=[
         'pytest-runner',
     ],
-    tests_require=['sanic-restful', 'pytest', 'pytest_cov', 'nose'],
+    tests_require=[
+        'sanic-restful', 'pytest', 'pytest_cov', 'nose', 'coverage==4.3.4'
+    ],
     # Install these with "pip install -e '.[paging]'" or '.[docs]'
 )
