@@ -1,7 +1,7 @@
 [[source]]
-name = "pypi"
+name = "tsinghua"
 verify_ssl = true
-url = "https://pypi.python.org/simple"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 
 [dev-packages]
 "flake8" = "*"
@@ -15,9 +15,9 @@ aiohttp = "*"
 pytest = "*"
 pytest-cov = "*"
 nose = "*"
+codeclimate-test-reporter = "*"
 
 [packages]
-simplejson = "*"
 e1839a8 = {path = ".",editable = true}
 
 [requires]
