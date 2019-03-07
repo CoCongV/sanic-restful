@@ -1,7 +1,6 @@
 from functools import wraps
 
 from sanic import Sanic, Blueprint
-from sanic.request import Request
 from sanic_restful import Resource, Api
 
 TODOS = {
