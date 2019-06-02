@@ -6,7 +6,6 @@
 [![](https://img.shields.io/pypi/pyversions/sanic-restful.svg)](https://pypi.org/project/sanic-restful/)
 # Sanic-RESTful
 
-(Developing)
 Sanic-RESTful is an extension for Sanic that adds support for quickly building REST APIs.
 It is a lightweight abstraction that works with your existing ORM/libraries.
 Sanic-RESTful encourage best practices with minimal setup.
@@ -16,7 +15,6 @@ It provides a coherent collection of decorators and tools to describe your API
 ## Note
 There are still references to modules from Flask and Werkzeug in the repo.
 But It work fine now.
-And welcome to commit for fix Bug and add feature.
 
 ## Compatibility
 Sanic-RESTful requires Python 3.5+
