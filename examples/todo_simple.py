@@ -13,8 +13,6 @@ TODOS = {
 def decorator(func):
     @wraps(func)
     async def wrapper(request, *args, **kwargs):
-        print(type(request))
-        request.user = 'User'
         return await func(request, *args, **kwargs)
     return wrapper
 
@@ -52,7 +50,7 @@ class TodoSimple(Resource):
 
 
 app = Sanic(__name__)
-bp = Blueprint(__name__, url_prefix='/test')
+bp = Blueprint(__name__, url_prefix='/')
 api = Api(bp)
 
 api.add_resource(TodoSimple, '/<todo_id:string>')
