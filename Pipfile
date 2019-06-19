@@ -21,6 +21,7 @@ coverage = "*"
 sanic = ">=0.8.3"
 pytz = "*"
 aniso8601 = ">=0.82"
+werkzeug = "*"
 
 [requires]
 python_version = "3.5"

@@ -7,6 +7,7 @@ requirements = [
     'aniso8601>=0.82',
     'Sanic',
     'pytz',
+    'werkzeug'
 ]
 
 
