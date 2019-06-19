@@ -8,6 +8,8 @@ from sanic_restful.exceptions import NotAcceptable
 from sanic_restful.json import output_json
 from sanic_restful.util import unpack, best_match_accept_mimetype
 
+from werkzeug.http import parse_accept_header
+
 DEFAULT_REPRESENTATIONS = [('application/json', output_json)]
 
 
@@ -167,10 +169,13 @@ class Api:
         """
         default_mediatype = kwargs.pop("fallback_mediatype",
                                        None) or self.default_mediatype
-        mediatype = best_match_accept_mimetype(
-            request, self.representations, default=default_mediatype)
+        # mediatype = best_match_accept_mimetype(
+        #     request, self.representations, default=default_mediatype)
+        mediatype = parse_accept_header(request.headers.get(
+            'accept', None)).best_match(
+                self.representations, default=default_mediatype)
         if not mediatype:
-            raise NotAcceptable("Not Accetable")
+            raise NotAcceptable("Not Acceptable")
         if mediatype in self.representations:
             resp = self.representations[mediatype](request.app, data, *args,
                                                    **kwargs)
