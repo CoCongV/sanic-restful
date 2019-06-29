@@ -9,7 +9,6 @@ before_script:
 language: python
 python:
   - 3.6
-  - 3.5
 install: pip install aiohttp
 script: python setup.py test
 after_script:

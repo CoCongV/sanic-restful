@@ -17,7 +17,7 @@ There are still references to modules from Flask and Werkzeug in the repo.
 But It work fine now.
 
 ## Compatibility
-Sanic-RESTful requires Python 3.5+
+Sanic-RESTful requires Python 3.6+
 
 ## Installtion
 ```

@@ -37,7 +37,6 @@ setup(
     packages=find_packages(exclude=['tests']),
     classifiers=[
         'Environment :: Web Environment',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'License :: OSI Approved :: BSD License',
     ],

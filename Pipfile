@@ -24,4 +24,4 @@ aniso8601 = ">=0.82"
 werkzeug = "*"
 
 [requires]
-python_version = "3.5"
+python_version = "3.6"
