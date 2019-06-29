@@ -3,7 +3,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/bb199b737ab079fd7b0c/maintainability)](https://codeclimate.com/github/CoCongV/sanic-restful/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/bb199b737ab079fd7b0c/test_coverage)](https://codeclimate.com/github/CoCongV/sanic-restful/test_coverage)
 [![PyPI version](https://badge.fury.io/py/sanic-restful.svg)](https://badge.fury.io/py/sanic-restful)
-[![](https://img.shields.io/pypi/pyversions/sanic-restful.svg)](https://pypi.org/project/sanic-restful/)
+[![](https://img.shields.io/badge/python-3.6-brightgreen.svg)](https://pypi.org/project/sanic-restful/)
 # Sanic-RESTful
 
 Sanic-RESTful is an extension for Sanic that adds support for quickly building REST APIs.
