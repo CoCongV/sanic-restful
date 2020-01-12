@@ -22,6 +22,7 @@ sanic = ">=0.8.3"
 pytz = "*"
 aniso8601 = ">=0.82"
 werkzeug = "*"
+sanic-restful = {editable = true,path = "."}
 
 [requires]
 python_version = "3.6"

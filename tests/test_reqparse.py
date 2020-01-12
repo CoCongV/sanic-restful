@@ -38,7 +38,7 @@ def app():
         async def post(self, request):
             args = no_location_parser.parse_args(request)
             assert args.key
-            return {}, 200, {}
+            return {"key": args.key}, 200, {}
 
     class Convert(Resource):
         async def get(self, request):
@@ -119,6 +119,9 @@ class TestParse:
         request, response = app.test_client.post(
             '/no_location', json={'key': 'values'})
         assert response.status == 200
+        assert response.json == {
+            'key': 'values'
+        }
 
     def test_convert(self, app: Sanic):
         request, response = app.test_client.get(

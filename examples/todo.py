@@ -29,6 +29,9 @@ parser = reqparse.RequestParser()
 parser.add_argument('task', location='form')
 parser.add_argument('test', location='json')
 
+post_parser = reqparse.RequestParser()
+post_parser.add_argument('key')
+# post_parser.add_argument("value")
 
 # Todo
 #   show a single todo item and lets you delete them
@@ -67,9 +70,17 @@ class TodoList(Resource):
         return TODOS[todo_id], 201
 
 
+class TodoArgs(Resource):
+    async def post(self, request):
+        args = post_parser.parse_args(request)
+        TODOS[args.key] = args.value
+        return TODOS
+
+
 # Actually setup the Api resource routing here
 api.add_resource(TodoList, '/todos')
 api.add_resource(Todo, '/todos/<todo_id:string>')
+api.add_resource(TodoArgs, '/todos/args')
 
 
 if __name__ == '__main__':
