@@ -1,10 +1,10 @@
 from functools import partial
 from json import dumps
-json_dumps = partial(dumps, separators=(",", ":"))
 
 from sanic_restful.util import PY3
-
 from sanic.response import HTTPResponse
+
+json_dumps = partial(dumps, separators=(",", ":"))
 
 
 def output_json(app, data, code, headers=None):
