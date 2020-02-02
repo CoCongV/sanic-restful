@@ -3,7 +3,27 @@ from copy import deepcopy
 import decimal
 
 from sanic.exceptions import abort, InvalidUsage
-from sanic.request import Request, RequestParameters
+from sanic.request import Request
+from werkzeug.datastructures import MultiDict as RequestParameters
+
+
+# class RequestParameters(collections.UserDict):
+#     """Hosts a dict with lists as values where get returns the first
+#     value of the list and getlist returns the whole shebang
+#     """
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.data = collections.defaultdict(list)
+
+#     def get(self, name, default=None):
+#         """Return the first value, either the default or actual"""
+#         return super().get(name, [default])[0]
+
+#     def getlist(self, name, default=None):
+#         """Return the entire list"""
+#         return super().get(name, default)
+
+#     def __setitem__(self, key, item): self.data[key].append(item)
 
 
 class Namespace(collections.UserDict):
@@ -195,7 +215,6 @@ class Argument(object):
                     if not (isinstance(values, collections.MutableSequence)
                             and self.action == 'append'):
                         values = [values]
-
                 for value in values:
                     if hasattr(value, "strip") and self.trim:
                         value = value.strip()
