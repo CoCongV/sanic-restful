@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/home/cong/.local/share/virtualenvs/sanic-restful-R5zS8c2Z/bin/python",
+    "python.pythonPath": "/home/lvcong/.local/share/virtualenvs/sanic-restful-0r8gFxAw/bin/python",
     "python.linting.flake8Enabled": true,
     "python.formatting.provider": "yapf",
     "python.linting.pylintPath": "/home/lvcong/.local/share/virtualenvs/sanic-restful-0r8gFxAw/bin/pylint",
