@@ -11,8 +11,7 @@ from sanic_restful.util import unpack
 from werkzeug.http import parse_accept_header
 
 DEFAULT_REPRESENTATIONS = [
-    ('application/json', output_json),
-    ('application/x-msgpack', )
+    ('application/json', output_json)
 ]
 
 
