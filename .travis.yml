@@ -1,15 +1,19 @@
 sudo: false  # https://docs.travis-ci.com/user/ci-environment/
-env:
-  global:
-    - CC_TEST_REPORTER_ID=9012cdb4c9f806992774593e26bd2497945c1b8a1c45ad81fe529100071a4a45
+language: python
+python:
+  - 3.6
+  - 3.7
+  - 3.8
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
-language: python
-python:
-  - 3.6
-install: pip install aiohttp
-script: python setup.py test
+install: pipenv install --dev
+env:
+  global:
+    - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
+    - CODECLIMATE_REPO_TOKEN=5fc619640a40fb7ea326d1b32c178919d6b91287
+    - CC_TEST_REPORTER_ID=9012cdb4c9f806992774593e26bd2497945c1b8a1c45ad81fe529100071a4a45
+script: pytest --cov=sanic_restful --cov-report=xml
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

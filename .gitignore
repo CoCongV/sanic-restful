@@ -2,7 +2,6 @@
 
 *.py[cod]
 env
-Pipfile.lock
 
 # C extensions
 *.so
